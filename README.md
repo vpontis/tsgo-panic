@@ -4,7 +4,7 @@ This package demonstrates a panic in the tsgo compiler when processing Knex modu
 
 ## The Issue
 
-When running `bun tsgo` in this package or in `lux/server`, we get:
+When running `bun tsgo` in this package, we get:
 
 ```
 panic: runtime error: slice bounds out of range [:52400] with length 524
@@ -21,6 +21,7 @@ The panic occurs in `GetLineAndCharacterOfPosition` when tsgo's declaration tran
 ## Root Cause
 
 The issue appears to be related to:
+
 - Module augmentation of the `knex` module
 - Complex generic constraints using conditional types (like `UnionPick`)
 - Method signatures that return intersection types with `Promise`
