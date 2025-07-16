@@ -11,10 +11,6 @@ declare module "knex" {
         ...columns: TKey[]
       ): Knex.QueryBuilder<TRecord, UnionPick<TRecord, TKey>> &
         Promise<UnionPick<TRecord, TKey>>;
-
-      firstOrFail(
-        column: "*",
-      ): Knex.QueryBuilder<TRecord, TRecord> & Promise<TRecord>;
     }
   }
 }
