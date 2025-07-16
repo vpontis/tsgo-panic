@@ -1,5 +1,9 @@
 import "knex";
-import { UnionPick } from "./types";
+
+// Minimal UnionPick type
+type UnionPick<T, K extends keyof T> = T extends unknown
+  ? Pick<T, K>
+  : never;
 
 // Minimal reproduction of the module augmentation that causes tsgo panic
 declare module "knex" {
