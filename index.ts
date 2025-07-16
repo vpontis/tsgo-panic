@@ -1,9 +1,7 @@
 import "knex";
 
 // Minimal UnionPick type
-type UnionPick<T, K extends keyof T> = T extends unknown
-  ? Pick<T, K>
-  : never;
+type UnionPick<T, K extends keyof T> = T extends unknown ? Pick<T, K> : never;
 
 // Minimal reproduction of the module augmentation that causes tsgo panic
 declare module "knex" {
@@ -15,7 +13,7 @@ declare module "knex" {
         Promise<UnionPick<TRecord, TKey>>;
 
       firstOrFail(
-        column: "*"
+        column: "*",
       ): Knex.QueryBuilder<TRecord, TRecord> & Promise<TRecord>;
     }
   }
